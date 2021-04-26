@@ -51,3 +51,27 @@
 6.   注册 request 请求事件
 
 ### 核心模块
+
+- os：用来获取机器信息的
+- path：用来操作路径的
+- cpus：获取当前机器的CPU信息
+- totalmem：memory内存
+- extname extension name：获取一个路径中的扩展名部分
+
+### ip地址和端口号
+
+1. ip 地址用来定位计算机
+2. 端口号用来定位具体的应用程序
+3. 所有需要联网通信的应用程序都会占用一个端口号
+
+### HTTP协议数据类型
+
+在 http 协议中，Content-Type 就是用来告知对方我给你发送的数据内容是什么类型
+
+```
+ res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+```
+
+###  Content-Type类型的查看方法
+
+http://tool.oschina.net/commons
