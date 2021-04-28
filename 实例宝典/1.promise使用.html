@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="00-js中的一等公民函数.js" id="user_form">
+    </form>
+    <script type="text/template" id="tpl">
+        <div>
+            <label for="">用户名</label>
+            <input type="text" value="{{ user.username }}">
+        </div>
+        <div>
+            <label for="">年龄</label>
+            <input type="text" value="{{ user.age }}">
+        </div>
+        <div>
+            <label for="">职业</label>
+            <select name="" id="">
+        {{ each jobs }} {{ if user.job === $value.id }}
+        <option value="{{ $value.id }}" selected>{{ $value.name }}</option>
+        {{ else }}
+        <option value="{{ $value.id }}">{{ $value.name }}</option>
+        {{ /if }} {{ /each }}
+      </select>
+        </div>
+    </script>
+    <script src="node_modules/art-template/lib/template-web.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        pGet('http://127.0.0.1:3000/users/4')
+            .then(function(data) {
+                console.log(data)
+            })
+
+        function pGet(url, callback) {
+            return new Promise(function(resolve, reject) {
+                var oReq = new XMLHttpRequest()
+                oReq.onload = function() {
+                    callback && callback(JSON.parse(oReq.responseText))
+                    resolve(JSON.parse(oReq.responseText))
+                }
+                oReq.onerror = function(err) {
+                    reject(err)
+                }
+                oReq.open("get", url, true)
+                oReq.send()
+            })
+        }
+
+        function get(url, callback) {
+            var oReq = new XMLHttpRequest()
+            oReq.onload = function() {
+                callback(oReq.responseText)
+            }
+            oReq.open("get", url, true)
+            oReq.send()
+        }
+    </script>
+</body>
+
+</html>
